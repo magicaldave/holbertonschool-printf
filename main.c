@@ -5,7 +5,7 @@ int _printf(const char *format, ...);
 
 int main(void)
 {
-	_printf("%i", 1024);
+	_printf("%c%c%c%c%c", 69, 68, 67, 66, 65);
 	return (0);
 }
 
@@ -25,7 +25,11 @@ int _printf(const char *format, ...)
 			{
 			case 'i':
 				integer = va_arg(args, int);
-				write(1, &integer, 4);
+				write(1, &integer, 1);
+				break;
+			case 'c':
+				integer = va_arg(args, int);
+				write(1, &integer, 1);
 				break;
 			}
 

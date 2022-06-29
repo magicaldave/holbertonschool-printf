@@ -1,17 +1,18 @@
 #include <stdarg.h>
 #include <unistd.h>
-
+#include <string.h>
 int _printf(const char *format, ...);
-
+int printString(char *s);
 int main(void)
 {
-	_printf("%c%c%c%c%c", 69, 68, 67, 66, 65);
+	_printf("Word: %s", "Hello, World!");
 	return (0);
 }
 
 int _printf(const char *format, ...)
 {
 	int integer;
+	char *tempStr = "";
 	unsigned int i = 0;
 	va_list args;
 
@@ -31,9 +32,30 @@ int _printf(const char *format, ...)
 				integer = va_arg(args, int);
 				write(1, &integer, 1);
 				break;
+			case 's':
+				tempStr = va_arg(args, char*);
+				printString(tempStr);
+				break;
 			}
 
+			i++;
 		}
+
+
+		write(1, &format[i], 1);
+
+		i++;
+	}
+	return (0);
+}
+
+int printString(char *s)
+{
+	int i = 0;
+
+	while (s[i])
+	{
+		write(1, &s[i], 1);
 		i++;
 	}
 	return (0);

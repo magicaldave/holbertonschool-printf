@@ -7,7 +7,7 @@ int printString(char *s);
 
 int main(void)
 {
-	_printf("%c%c%c%c%c", 69, 68, 67, 66, 65);
+	_printf("%s", "Hello, World!");
 
 	return (0);
 }
@@ -44,10 +44,10 @@ int _printf(const char *format, ...)
 
 			i++;
 		}
-
-
-		write(1, &format[i], 1);
-
+		else 
+		{
+			write(1, &format[i], 1);
+		}
 		i++;
 	}
 	return (0);

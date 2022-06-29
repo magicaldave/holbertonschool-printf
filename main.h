@@ -1,5 +1,5 @@
 #ifndef MAIN_H
 
-/* new */
+/* FIX THESE MESSAGES DAMNIT  */
 
 #endif

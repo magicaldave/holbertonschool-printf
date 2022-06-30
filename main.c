@@ -2,7 +2,7 @@
 
 int main(void)
 {
-	_printf("%s", "Hello, World!");
+	_printf("\t+-*/%%%s\n", "Hello, World!");
 
 	return (0);
 }

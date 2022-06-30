@@ -7,8 +7,9 @@
 #include <unistd.h>
 /* function files */
 /* function prototypes*/
-void _putchar(char c);
 int _printf(const char *format, ...);
-int printString(char *s);
+int _putchar(char character);
+int printString(char *string);
 void print_int(int integer);
+void switch_case(char character, va_list args);
 #endif

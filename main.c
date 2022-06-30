@@ -2,7 +2,7 @@
 
 int main(void)
 {
-	_printf("%s", "Hello, World!");
+	_printf("%%%i", 1024, 1024, 1024);
 
 	return (0);
 }

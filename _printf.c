@@ -23,21 +23,21 @@ int _printf(const char *format, ...)
 				break;
 			case 'c':
 				integer = va_arg(args, int);
-				write(1, &integer, 1);
+				_putchar(integer);
 				break;
 			case 's':
 				tempStr = va_arg(args, char*);
 				printString(tempStr);
 				break;
 			case '%':
-				write(1, "%", 1);
+				_putchar('%');
 				break;
 			}
 			i++;
 		}
 		else
 		{
-			write(1, &format[i], 1);
+			_putchar(format[i]);
 		}
 		i++;
 	}

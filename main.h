@@ -7,6 +7,7 @@
 #include <unistd.h>
 /* function files */
 /* function prototypes*/
+void _putchar(char c);
 int _printf(const char *format, ...);
 int printString(char *s);
 void print_int(int integer);

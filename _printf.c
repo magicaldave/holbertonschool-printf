@@ -17,18 +17,21 @@ int _printf(const char *format, ...)
 		{
 			switch (format[i + 1])
 			{
-				case 'i':
-					integer = va_arg(args, int);
-					write(1, &integer, 1);
-					break;
-				case 'c':
-					integer = va_arg(args, int);
-					write(1, &integer, 1);
-					break;
-				case 's':
-					tempStr = va_arg(args, char*);
-					printString(tempStr);
-					break;
+			case 'i':
+				integer = va_arg(args, int);
+				print_int(integer);
+				break;
+			case 'c':
+				integer = va_arg(args, int);
+				write(1, &integer, 1);
+				break;
+			case 's':
+				tempStr = va_arg(args, char*);
+				printString(tempStr);
+				break;
+			case '%':
+				write(1, "%", 1);
+				break;
 			}
 			i++;
 		}

@@ -9,4 +9,5 @@
 /* function prototypes*/
 int _printf(const char *format, ...);
 int printString(char *s);
+void print_int(int integer);
 #endif

@@ -1,14 +1,19 @@
 #include "main.h"
-void print_int(int integer)
+int print_int(int integer)
 {
-/* call a function to ensure base 10 conversion */
-	if (integer < 0)
+	int i = 0;
+	char buf[1024];
+
+	while (integer > 9)
 	{
-		write(1, "-", 1);
-		integer = -integer;
+		buf[i] = (integer % 10) + '0';
+		integer /= 10;
+		i++;
 	}
-	if (integer / 10)
-		print_int(integer / 10);
-	integer = ((integer % 10) + '0');
-	write(1, &integer, 1);
+	buf[i] = (integer + '0');
+	buf[i + 1] = '\0';
+
+	rev_string(buf);
+
+	return (write(1, &buf, _strlen(buf)));
 }

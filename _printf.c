@@ -1,10 +1,11 @@
 #include "main.h"
+#include <stdio.h>
 /**
   *
   */
 int _printf(const char *format, ...)
 {
-	unsigned int i = 0;
+	unsigned int i = 0, c = 0;
 	va_list args;
 
 	va_start(args, format);
@@ -13,12 +14,13 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			switch_case(format[i + 1], args);
+			c += switch_case(format[i + 1], args);
 			i++;
 		}
 		else
-			_putchar(format[i]);
+			c += _putchar(format[i]);
 		i++;
 	}
-	return (0);
+	return (c);
 }
+

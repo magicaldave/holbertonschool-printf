@@ -1,31 +1,37 @@
 #include "main.h"
+#include <string.h>
 /**
   *
   */
 
-void switch_case(char x, va_list args)
+int switch_case(char x, va_list args)
 {
-	int i;
-	char c, *tempStr;
+	int i, c;
+	char *tempStr;
+
+	if (!i)
+		i = 0;
 
 	switch (x)
 	{
 	case 'i':
-		i = va_arg(args, int);
-		print_int(i);
+		c = va_arg(args, int);
+		i += print_int(c);
 		break;
 	case 'c':
 		c = va_arg(args, int);
-		_putchar(c);
+		i += _putchar(c);
 		break;
 	case 's':
 		tempStr = va_arg(args, char*);
-		printString(tempStr);
+		i += printString(tempStr);
 		break;
 	case '%':
-		_putchar('%');
+		i += _putchar('%');
 		break;
 	}
+
+	return (i);
 }
 
 int _putchar(char c)

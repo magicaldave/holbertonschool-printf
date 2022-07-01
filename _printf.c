@@ -4,21 +4,20 @@
   */
 int _printf(const char *format, ...)
 {
-	unsigned int i = 0, c = 0;
+	unsigned int c = 0;
 	va_list args;
 
 	va_start(args, format);
 
-	while (format[i])
+	while (*format)
 	{
-		if (format[i] == '%')
+		if (*format == '%')
 		{
-			c += switch_case(format[i + 1], args);
-			i++;
+			c += switch_case(*++format, args);
 		}
 		else
-			c += _putchar(format[i]);
-		i++;
+			c += _putchar(*format);
+		format++;
 	}
 	return (c);
 }

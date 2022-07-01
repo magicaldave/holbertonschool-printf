@@ -1,5 +1,4 @@
 #include "main.h"
-
 int printString(char *s)
 {
 	int i = 0;

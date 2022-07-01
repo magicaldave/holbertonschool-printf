@@ -3,29 +3,30 @@
   *
   */
 
-void switch_case(char x, va_list args)
+int switch_case(char x, va_list args)
 {
 	int i;
-	char c, *tempStr;
+	char chars = 0, *tempStr;
 
 	switch (x)
 	{
 	case 'i':
 		i = va_arg(args, int);
-		print_int(i);
+		chars += print_int(i);
 		break;
 	case 'c':
-		c = va_arg(args, int);
-		_putchar(c);
+		i = va_arg(args, int);
+		chars += _putchar(i);
 		break;
 	case 's':
 		tempStr = va_arg(args, char*);
-		printString(tempStr);
+		chars += printString(tempStr);
 		break;
 	case '%':
-		_putchar('%');
+		chars += _putchar('%');
 		break;
 	}
+	return (chars);
 }
 
 int _putchar(char c)

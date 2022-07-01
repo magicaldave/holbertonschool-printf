@@ -10,6 +10,6 @@
 int _printf(const char *format, ...);
 int _putchar(char character);
 int printString(char *string);
-int print_int(int integer);
-int switch_case(char character, va_list args);
+void print_int(int integer);
+void switch_case(char character, va_list args);
 #endif

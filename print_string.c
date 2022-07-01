@@ -12,5 +12,5 @@ int printString(char *s)
 		i++;
 	}
 
-	return (i);
+	return (0);
 }

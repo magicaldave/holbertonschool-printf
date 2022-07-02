@@ -1,5 +1,11 @@
 #include "main.h"
 
+/**
+ * get_spec - printf helper that uses an input char to determine return
+ * @s: char input to match valid printf specifier
+ * Return: pointer to desired function
+ */
+
 
 int (*get_spec(char s))(va_list)
 {

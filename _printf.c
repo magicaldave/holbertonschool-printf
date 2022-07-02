@@ -1,6 +1,8 @@
 #include "main.h"
 /**
-  *
+  * _printf - print formatted output
+  * @format: string to indicate formats to print
+  * Return: Total chars printed, or -1 on fails
   */
 int _printf(const char *format, ...)
 {

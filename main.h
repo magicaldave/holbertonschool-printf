@@ -6,6 +6,11 @@
 #include <stdarg.h>
 #include <unistd.h>
 /* STRUCT */
+/**
+ * struct specifier - checks for valid format specifier from printf
+ * @spec: character to match against input
+ * @f: function pointer to output matching spec
+ */
 typedef struct specifier
 {
 	char *spec;

@@ -5,14 +5,23 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <unistd.h>
-/* function files */
+/* STRUCT */
+typedef struct specifier
+{
+	char *spec;
+	int (*f)(va_list);
+} spec;
 /* Old Function Prototypes*/
 void rev_string(char *src);
 int _strlen(char *s);
 /* New Function Prototypes */
 int _printf(const char *format, ...);
-int _putchar(char character);
-int printString(char *string);
-int print_int(int integer);
-int switch_case(char character, va_list args);
+/* Subroutines */
+int printString(va_list args);
+int print_int(va_list args);
+int print_percent(va_list args);
+int print_char(va_list args);
+
+int _putchar(char c);
+int (*get_spec(char s))(va_list);
 #endif

@@ -12,31 +12,34 @@ int print_int(va_list args)
 
 	integer = va_arg(args, int);
 
-	if (integer < 0)
+	if (integer)
 	{
-		if (integer == INT_MIN)
+		if (integer < 0)
 		{
-			integer = INT_MAX;
-			minflag = 1;
+			if (integer == INT_MIN)
+			{
+				integer = INT_MAX;
+				minflag = 1;
+			}
+			else
+				integer *= -1;
+			count += _putchar('-');
 		}
-		else
-			integer *= -1;
-		count += _putchar('-');
+
+		while (integer > 9)
+		{
+			buf[i] = (integer % 10) + '0';
+			integer /= 10;
+			i++;
+		}
+		buf[i] = (integer + '0');
+		buf[i + 1] = '\0';
+		buf[0] += minflag;
+
+		rev_string(buf);
+
+		count += write(1, &buf, _strlen(buf));
 	}
-
-	while (integer > 9)
-	{
-		buf[i] = (integer % 10) + '0';
-		integer /= 10;
-		i++;
-	}
-	buf[i] = (integer + '0');
-	buf[i + 1] = '\0';
-	buf[0] += minflag;
-
-	rev_string(buf);
-
-	count += write(1, &buf, _strlen(buf));
 
 	return (count);
 }
@@ -52,19 +55,22 @@ int print_unsigned(va_list args)
 
 	integer = va_arg(args, unsigned int);
 
-	while (integer > 9)
+	if (integer)
 	{
-		buf[i] = (integer % 10) + '0';
-		integer /= 10;
-		i++;
+		while (integer > 9)
+		{
+			buf[i] = (integer % 10) + '0';
+			integer /= 10;
+			i++;
+		}
+		buf[i] = (integer + '0');
+		buf[i + 1] = '\0';
+		buf[0] += minflag;
+
+		rev_string(buf);
+
+		count += write(1, &buf, _strlen(buf));
 	}
-	buf[i] = (integer + '0');
-	buf[i + 1] = '\0';
-	buf[0] += minflag;
-
-	rev_string(buf);
-
-	count += write(1, &buf, _strlen(buf));
 
 	return (count);
 }
@@ -80,14 +86,12 @@ int printString(va_list args)
 
 	s = va_arg(args, char *);
 
-	if (s == NULL)
-		s = "(nil)";
+	if (s)
+		return (write(1, s, _strlen(s)));
+	return (0);
 
-	return (write(1, s, _strlen(s)));
 }
-
-/**
- * print_char - duplicate function of _putchar that takes va_arg as argument.
+/** print_char - duplicate function of _putchar that takes va_arg as argument.
  * I do NOT like this function and want to remove this soon.
  * @args: va_list argument
  * Return: number of chars printed
@@ -98,7 +102,9 @@ int print_char(va_list args)
 	int c;
 
 	c = va_arg(args, int);
-	return (write(1, &c, 1));
+	if (c)
+		return (write(1, &c, 1));
+	return (0);
 }
 
 /**
@@ -108,5 +114,7 @@ int print_char(va_list args)
  */
 int _putchar(char c)
 {
-	return (write(1, &c, 1));
+	if (c)
+		return (write(1, &c, 1));
+	return (0);
 }

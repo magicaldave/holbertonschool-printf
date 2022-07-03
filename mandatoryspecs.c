@@ -1,4 +1,5 @@
 #include "main.h"
+#include <limits.h>
 /**
  * print_int - prints an input integer argument in base 10
  * @args: variadic list input
@@ -6,14 +7,20 @@
  */
 int print_int(va_list args)
 {
-	int i = 0, count = 0, integer;
+	int i = 0, count = 0, minflag = 0, integer;
 	char buf[1024];
 
 	integer = va_arg(args, int);
 
 	if (integer < 0)
 	{
-		integer *= -1;
+		if (integer == INT_MIN)
+		{
+			integer = INT_MAX;
+			minflag = 1;
+		}
+		else
+			integer *= -1;
 		count += _putchar('-');
 	}
 
@@ -25,6 +32,35 @@ int print_int(va_list args)
 	}
 	buf[i] = (integer + '0');
 	buf[i + 1] = '\0';
+	buf[0] += minflag;
+
+	rev_string(buf);
+
+	count += write(1, &buf, _strlen(buf));
+
+	return (count);
+}
+/**
+  * print_unsigned - prints an input unsigned int arg in base 10
+  * @args: variadic list input
+  * Return: number of chars printed
+  */
+int print_unsigned(va_list args)
+{
+	unsigned int i = 0, count = 0, minflag = 0, integer;
+	char buf[1024];
+
+	integer = va_arg(args, unsigned int);
+
+	while (integer > 9)
+	{
+		buf[i] = (integer % 10) + '0';
+		integer /= 10;
+		i++;
+	}
+	buf[i] = (integer + '0');
+	buf[i + 1] = '\0';
+	buf[0] += minflag;
 
 	rev_string(buf);
 

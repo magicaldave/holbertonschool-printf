@@ -91,7 +91,9 @@ int printString(va_list args)
 	return (0);
 
 }
-/** print_char - duplicate function of _putchar that takes va_arg as argument.
+
+/**
+ * print_char - duplicate function of _putchar that takes va_arg as argument.
  * I do NOT like this function and want to remove this soon.
  * @args: va_list argument
  * Return: number of chars printed
@@ -102,7 +104,7 @@ int print_char(va_list args)
 	int c;
 
 	c = va_arg(args, int);
-	if (c)
+	if (c && c < 128)
 		return (write(1, &c, 1));
 	return (0);
 }

@@ -14,6 +14,7 @@ int (*get_spec(char s))(va_list)
 		{"s", printString},
 		{"i", print_int},
 		{"d", print_int},
+		{"u", print_unsigned},
 		{NULL, NULL}
 	};
 	unsigned int i = 0;

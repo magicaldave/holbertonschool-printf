@@ -10,15 +10,14 @@ _printf \- format and print data
 Print ARGUMENT(s) according to FORMAT
 FORMAT controls the output as in C printf. Interpreted sequences are:
 
-\\" double quote
-\\\\ backslash
+
 .SH RETURN VALUE
 Number of characters printed out up success. Return = \-1 if function is unable to complete execution.
 
 .SH EXAMPLE
 
 .SH SEE ALSO
-printf(1), printf(3)
+/fBprintf/fR(1), printf(3)
 
 .SH AUTHOR
 Written by Blake Willis and Dave Corley

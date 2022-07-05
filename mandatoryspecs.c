@@ -1,5 +1,5 @@
 #include "main.h"
-#include <limits.h>
+
 /**
  * print_int - prints an input integer argument in base 10
  * @args: variadic list input
@@ -46,6 +46,7 @@ int print_int(va_list args)
 	}
 	return (count);
 }
+
 /**
   * print_unsigned - prints an input unsigned int arg in base 10
   * @args: variadic list input
@@ -77,12 +78,12 @@ int print_unsigned(va_list args)
 
 	return (count);
 }
+
 /**
  * printString - prints a string directly to stdout
  * @args: variadic list input
  * Return: number of chars printed
  */
-
 int printString(va_list args)
 {
 	char *s;
@@ -97,12 +98,10 @@ int printString(va_list args)
 }
 
 /**
- * print_char - duplicate function of _putchar that takes va_arg as argument.
- * I do NOT like this function and want to remove this soon.
+ * print_char - take next argument as int, pass it to _putchar
  * @args: va_list argument
- * Return: number of chars printed
+ * Return: # of chars printed
  */
-
 int print_char(va_list args)
 {
 	int c;
@@ -115,7 +114,7 @@ int print_char(va_list args)
 /**
  * _putchar - writes a char directly to stdout
  * @c: input char as int value
- * Return: number of chars printed
+ * Return: # of chars printed
  */
 int _putchar(char c)
 {

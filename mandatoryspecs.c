@@ -11,7 +11,7 @@ int print_int(va_list args)
 	long integer;
 	char buf[1024];
 
-	integer = va_arg(args, long);
+	integer = va_arg(args, int);
 
 	if (integer == 0)
 		return (write(1, "0", 1));
@@ -89,9 +89,10 @@ int printString(va_list args)
 
 	s = va_arg(args, char *);
 
-	if (s)
-		return (write(1, s, _strlen(s)));
-	return (0);
+	if (!s)
+		s = "(null)";
+	return (write(1, s, _strlen(s)));
+
 
 }
 
@@ -107,9 +108,8 @@ int print_char(va_list args)
 	int c;
 
 	c = va_arg(args, int);
-	if (c && c < 128)
-		return (write(1, &c, 1));
-	return (0);
+
+	return (write(1, &c, 1));
 }
 
 /**

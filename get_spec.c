@@ -10,7 +10,7 @@
 int (*get_spec(char s))(va_list)
 {
 	spec specs[] = {
-		{"c", _putchar},
+		{"c", print_char},
 		{"s", printString},
 		{"i", print_int},
 		{"d", print_int},

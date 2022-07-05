@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <unistd.h>
+#include <limits.h>
 /* STRUCT */
 /**
  * struct specifier - checks for valid format specifier from printf

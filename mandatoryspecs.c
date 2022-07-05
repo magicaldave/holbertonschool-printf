@@ -7,10 +7,14 @@
  */
 int print_int(va_list args)
 {
-	int i = 0, count = 0, minflag = 0, integer;
+	int i = 0, count = 0, minflag = 0;
+	long integer;
 	char buf[1024];
 
-	integer = va_arg(args, int);
+	integer = va_arg(args, long);
+
+	if (integer == 0)
+		return (write(1, "0", 1));
 
 	if (integer)
 	{
@@ -40,7 +44,6 @@ int print_int(va_list args)
 
 		count += write(1, &buf, _strlen(buf));
 	}
-
 	return (count);
 }
 /**

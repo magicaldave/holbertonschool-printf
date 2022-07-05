@@ -26,6 +26,8 @@ int _printf(const char *format, ...)
 			}
 			else
 			{
+				if (!*(format + 1))
+					return (-1);
 				s = get_spec(*++format);
 				if (s)
 					c += s(args);

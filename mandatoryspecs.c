@@ -106,6 +106,11 @@ int print_char(va_list args)
 	c = va_arg(args, int);
 	if (c && c < 128)
 		return (write(1, &c, 1));
+	else
+	{
+		c = 63;
+		return (write(1, &c, 1));
+	}
 	return (0);
 }
 

@@ -11,7 +11,7 @@ int print_int(va_list args)
 	long integer;
 	char buf[1024];
 
-	integer = va_arg(args, long);
+	integer = va_arg(args, int);
 
 	if (integer == 0)
 		return (write(1, "0", 1));

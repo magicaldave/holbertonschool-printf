@@ -36,7 +36,7 @@ int _printf(const char *format, ...)
 					c += write(1, (format - 1), 2);
 				}
 				format++;
-		}
+			}
 		}
 		else
 		{

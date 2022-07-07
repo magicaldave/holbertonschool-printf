@@ -5,11 +5,10 @@
  * @args: variadic list input
  * Return: number of chars printed
  */
-int print_int(va_list args)
+int print_int(va_list args, char *bigbuf)
 {
-	int i = 0, count = 0, minflag = 0;
-	long integer;
-	char buf[1024];
+	int minflag = 0, negflag = 0, count = 0, len = 1;
+	long integer, i = 1;
 
 	integer = va_arg(args, int);
 
@@ -27,24 +26,29 @@ int print_int(va_list args)
 			}
 			else
 				integer *= -1;
-			count += _putchar('-');
+			negflag += _putchar('-');
 		}
 
-		while (integer > 9)
+		while ((integer / i) >= 10)
 		{
-			buf[i] = (integer % 10) + '0';
-			integer /= 10;
-			i++;
+			i *= 10;
+			len++;
 		}
-		buf[i] = (integer + '0');
-		buf[i + 1] = '\0';
-		buf[0] += minflag;
 
-		rev_string(buf);
+		for (; count < len ; count++, i /= 10)
+		{
+			bigbuf[count] = (integer / i) + '0';
+			integer %= i;
+		}
 
-		count += write(1, &buf, _strlen(buf));
+		if (minflag)
+			bigbuf[count - 1] += minflag;
+
+
+		write(1, bigbuf, count);
+		return (count + negflag);
 	}
-	return (count);
+	return (-2);
 }
 
 /**
@@ -52,28 +56,27 @@ int print_int(va_list args)
   * @args: variadic list input
   * Return: number of chars printed
   */
-int print_unsigned(va_list args)
+int print_unsigned(va_list args, char *bigbuf)
 {
-	unsigned int i = 0, count = 0, minflag = 0, integer;
-	char buf[1024];
+	unsigned int count = 0, len = 1, integer, i = 1;
 
 	integer = va_arg(args, unsigned int);
 
 	if (integer)
 	{
-		while (integer > 9)
+		while ((integer / i) >= 10)
 		{
-			buf[i] = (integer % 10) + '0';
-			integer /= 10;
-			i++;
+			i *= 10;
+			len++;
 		}
-		buf[i] = (integer + '0');
-		buf[i + 1] = '\0';
-		buf[0] += minflag;
 
-		rev_string(buf);
+		for (; count < len ; count++, i /= 10)
+		{
+			bigbuf[count] = (integer / i) + '0';
+			integer %= i;
+		}
 
-		count += write(1, &buf, _strlen(buf));
+		write(1, bigbuf, count);
 	}
 
 	return (count);
@@ -84,7 +87,7 @@ int print_unsigned(va_list args)
  * @args: variadic list input
  * Return: number of chars printed
  */
-int printString(va_list args)
+int printString(va_list args, char *bigbuf)
 {
 	char *s;
 
@@ -102,7 +105,7 @@ int printString(va_list args)
  * @args: va_list argument
  * Return: # of chars printed
  */
-int print_char(va_list args)
+int print_char(va_list args, char *bigbuf)
 {
 	int c;
 

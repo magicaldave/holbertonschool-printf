@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdlib.h>
 /**
   * _printf - print formatted output
   * @format: string to indicate formats to print
@@ -7,13 +8,16 @@
 int _printf(const char *format, ...)
 {
 	unsigned int c = 0;
-	int (*s)(va_list);
+	char *bigbuf;
+	int (*s)(va_list, char *);
 	va_list args;
 
 	if (!format)
 		return (-1);
 
 	va_start(args, format);
+
+	bigbuf = malloc (1024 * sizeof(char));
 
 	while (*format)
 	{
@@ -30,13 +34,13 @@ int _printf(const char *format, ...)
 					return (-1);
 				s = get_spec(*++format);
 				if (s)
-					c += s(args);
+					c += s(args, bigbuf);
 				else
 				{
 					c += write(1, (format - 1), 2);
 				}
 				format++;
-		}
+			}
 		}
 		else
 		{

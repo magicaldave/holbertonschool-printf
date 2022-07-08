@@ -11,12 +11,9 @@ int print_int(va_list args, char *bigbuf)
 	long integer, i = 1;
 
 	loc = _strlen(bigbuf);
-
 	integer = va_arg(args, int);
-
 	if (integer == 0)
 		return (write(1, "0", 1));
-
 	if (integer)
 	{
 		if (integer < 0)
@@ -131,13 +128,20 @@ int print_char(va_list args, char *bigbuf)
 }
 
 /**
- * _putchar - writes a char directly to stdout
- * @c: input char as int value
- * Return: # of chars printed
+ * print_percent - adds a percent to bigbuf
+ * @args: va_list (unused)
+ * @bigbuf: string to write to
+ * Return: always 1
  */
-int _putchar(char c)
+
+int print_percent(va_list args, char *bigbuf)
 {
-	if (c)
-		return (write(1, &c, 1));
-	return (0);
+	int loc = 0;
+	(void)args;
+
+	loc = _strlen(bigbuf);
+
+	bigbuf[loc] = '%';
+
+	return (1);
 }

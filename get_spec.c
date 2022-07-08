@@ -15,6 +15,7 @@ int (*get_spec(char s))(va_list, char *)
 		{"i", print_int},
 		{"d", print_int},
 		{"u", print_unsigned},
+		{"%", print_percent},
 		{NULL, NULL}
 	};
 	unsigned int i = 0;

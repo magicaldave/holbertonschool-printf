@@ -14,8 +14,7 @@ int _printf(const char *format, ...)
 
 	if (!format)
 		return (-1);
-	va_start(args, format);
-	bigbuf = calloc(2048, sizeof(char));
+	startprintf; /* va_start, allocate 2048 B to write */
 
 	while (*format)
 	{
@@ -44,8 +43,6 @@ int _printf(const char *format, ...)
 			format++;
 		}
 	}
-	write(1, bigbuf, c);
-	va_end(args);
-	free(bigbuf);
+	endprintf; /* write buffer, va_end, free buffer */
 	return (c);
 }

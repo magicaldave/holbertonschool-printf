@@ -1,8 +1,21 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+/* MACROS */
+#define startprintf do {				\
+		va_start(args, format);			\
+		bigbuf = calloc(2048, sizeof(char));	\
+	} while (0)
+
+#define endprintf do {				\
+		write(1, bigbuf, c);		\
+		va_end(args);			\
+		free(bigbuf);			\
+	} while (0)
+
 /* Standard Libraries */
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdarg.h>
 #include <unistd.h>
 #include <limits.h>

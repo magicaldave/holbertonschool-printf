@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 	if (!format)
 		return (-1);
 	va_start(args, format);
-	bigbuf = malloc(1024 * sizeof(char));
+	bigbuf = malloc(2048 * sizeof(char));
 
 	while (*format)
 	{
@@ -46,5 +46,6 @@ int _printf(const char *format, ...)
 	}
 	write(1, bigbuf, c);
 	va_end(args);
+	free (bigbuf);
 	return (c);
 }

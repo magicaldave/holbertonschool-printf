@@ -13,7 +13,10 @@ int print_int(va_list args, char *bigbuf)
 	loc = _strlen(bigbuf);
 	integer = va_arg(args, int);
 	if (integer == 0)
-		return (write(1, "0", 1));
+	{
+		bigbuf[loc] = '0';
+		return (1);
+	}
 	if (integer)
 	{
 		if (integer < 0)
@@ -30,23 +33,18 @@ int print_int(va_list args, char *bigbuf)
 			loc++;
 		}
 
-		while ((integer / i) >= 10)
+		for (; (integer / i) >= 10 ; i *= 10, len++)
 		{
-			i *= 10;
-			len++;
 		}
 
-		for (; count < len ; count++, i /= 10)
+		for (; count < len ; loc++, count++, i /= 10)
 		{
 			bigbuf[loc] = (integer / i) + '0';
 			integer %= i;
-			loc++;
 		}
 		bigbuf[loc - 1] += minflag;
-
-		return (count + negflag);
 	}
-	return (-2);
+	return (count + negflag);
 }
 
 /**
@@ -93,10 +91,11 @@ int printString(va_list args, char *bigbuf)
 	loc = _strlen(bigbuf);
 
 	s = va_arg(args, char *);
-	len = _strlen(s);
 
 	if (!s)
 		s = "(null)";
+
+	len = _strlen(s);
 
 	while (*s)
 	{

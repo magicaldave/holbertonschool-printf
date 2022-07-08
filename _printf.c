@@ -31,9 +31,7 @@ int _printf(const char *format, ...)
 			if (s)
 				c += s(args, bigbuf);
 			else
-			{
 				writetwochars; /* save prev & curr char, c + 2 */
-			}
 		}
 		else
 		{

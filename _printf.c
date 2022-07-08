@@ -16,7 +16,7 @@ int _printf(const char *format, ...)
 	if (!format)
 		return (-1);
 
-	startprintf; /* va_start, allocate 2048 B to write */
+	startprintf; /* va_start, calloc 2048B to write */
 
 	for (; *format; format++)
 	{
@@ -32,7 +32,7 @@ int _printf(const char *format, ...)
 				c += s(args, bigbuf);
 			else
 			{
-				writetwochars; /* add prev & curr char, c + 2 */
+				writetwochars; /* save prev & curr char, c + 2 */
 			}
 		}
 		else

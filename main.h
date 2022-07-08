@@ -53,9 +53,5 @@ int print_int(va_list args, char *bigbuf);
 int print_unsigned(va_list args, char *bigbuf);
 int print_char(va_list args, char *bigbuf);
 int print_percent(va_list args, char *bigbuf);
-
-
-int rec_int(int integer, char *bigbuf);
-int _putchar(char c, char *bigbuf);
 int (*get_spec(char s))(va_list, char *);
 #endif

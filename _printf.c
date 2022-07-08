@@ -8,13 +8,14 @@
 
 int _printf(const char *format, ...)
 {
-	unsigned int c = 0;
-	char *bigbuf;
-	va_list args;
-	int (*s)(va_list, char*);
+	unsigned int c = 0; /* valid char count */
+	char *bigbuf; /* buffer to write */
+	va_list args; /* variadic args */
+	int (*s)(va_list, char*); /* specifier function pointer */
 
 	if (!format)
 		return (-1);
+
 	startprintf; /* va_start, allocate 2048 B to write */
 
 	for (; *format; format++)
@@ -40,6 +41,6 @@ int _printf(const char *format, ...)
 			c++;
 		}
 	}
-	endprintf; /* write buffer, va_end, free buffer */
+	endprintf; /* write buffer to stdout , va_end, free buffer */
 	return (c);
 }

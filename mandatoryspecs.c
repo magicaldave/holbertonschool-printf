@@ -5,17 +5,15 @@
  * @args: variadic list input
  * Return: number of chars printed
  */
-int print_int(va_list args)
+int print_int(va_list args, char *bigbuf)
 {
-	int i = 0, count = 0, minflag = 0;
-	long integer;
-	char buf[1024];
+	int minflag = 0, negflag = 0, count = 0, len = 1, loc = 0;
+	long integer, i = 1;
 
+	loc = _strlen(bigbuf);
 	integer = va_arg(args, int);
-
 	if (integer == 0)
 		return (write(1, "0", 1));
-
 	if (integer)
 	{
 		if (integer < 0)
@@ -27,24 +25,28 @@ int print_int(va_list args)
 			}
 			else
 				integer *= -1;
-			count += _putchar('-');
+			negflag++;
+			bigbuf[loc] = '-';
+			loc++;
 		}
 
-		while (integer > 9)
+		while ((integer / i) >= 10)
 		{
-			buf[i] = (integer % 10) + '0';
-			integer /= 10;
-			i++;
+			i *= 10;
+			len++;
 		}
-		buf[i] = (integer + '0');
-		buf[i + 1] = '\0';
-		buf[0] += minflag;
 
-		rev_string(buf);
+		for (; count < len ; count++, i /= 10)
+		{
+			bigbuf[loc] = (integer / i) + '0';
+			integer %= i;
+			loc++;
+		}
+		bigbuf[loc - 1] += minflag;
 
-		count += write(1, &buf, _strlen(buf));
+		return (count + negflag);
 	}
-	return (count);
+	return (-2);
 }
 
 /**
@@ -52,28 +54,27 @@ int print_int(va_list args)
   * @args: variadic list input
   * Return: number of chars printed
   */
-int print_unsigned(va_list args)
+int print_unsigned(va_list args, char *bigbuf)
 {
-	unsigned int i = 0, count = 0, minflag = 0, integer;
-	char buf[1024];
+	unsigned int count = 0, len = 1, integer, i = 1, loc = 0;
+
+	loc = _strlen(bigbuf);
 
 	integer = va_arg(args, unsigned int);
 
 	if (integer)
 	{
-		while (integer > 9)
+		while ((integer / i) >= 10)
 		{
-			buf[i] = (integer % 10) + '0';
-			integer /= 10;
-			i++;
+			i *= 10;
+			len++;
 		}
-		buf[i] = (integer + '0');
-		buf[i + 1] = '\0';
-		buf[0] += minflag;
 
-		rev_string(buf);
-
-		count += write(1, &buf, _strlen(buf));
+		for (; count < len ; loc++, count++, i /= 10)
+		{
+			bigbuf[loc] = (integer / i) + '0';
+			integer %= i;
+		}
 	}
 
 	return (count);
@@ -84,15 +85,26 @@ int print_unsigned(va_list args)
  * @args: variadic list input
  * Return: number of chars printed
  */
-int printString(va_list args)
+int printString(va_list args, char *bigbuf)
 {
 	char *s;
+	int loc, len;
+
+	loc = _strlen(bigbuf);
 
 	s = va_arg(args, char *);
+	len = _strlen(s);
 
 	if (!s)
 		s = "(null)";
-	return (write(1, s, _strlen(s)));
+
+	while (*s)
+	{
+		bigbuf[loc] = *s;
+		s++;
+		loc++;
+	}
+	return (len);
 
 
 }
@@ -102,23 +114,34 @@ int printString(va_list args)
  * @args: va_list argument
  * Return: # of chars printed
  */
-int print_char(va_list args)
+int print_char(va_list args, char *bigbuf)
 {
-	int c;
+	int _char, loc = 0;
 
-	c = va_arg(args, int);
+	loc = _strlen(bigbuf);
 
-	return (write(1, &c, 1));
+	_char = va_arg(args, int);
+
+	bigbuf[loc] = _char;
+
+	return (1);
 }
 
 /**
- * _putchar - writes a char directly to stdout
- * @c: input char as int value
- * Return: # of chars printed
+ * print_percent - adds a percent to bigbuf
+ * @args: va_list (unused)
+ * @bigbuf: string to write to
+ * Return: always 1
  */
-int _putchar(char c)
+
+int print_percent(va_list args, char *bigbuf)
 {
-	if (c)
-		return (write(1, &c, 1));
-	return (0);
+	int loc = 0;
+	(void)args;
+
+	loc = _strlen(bigbuf);
+
+	bigbuf[loc] = '%';
+
+	return (1);
 }

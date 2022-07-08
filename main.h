@@ -7,6 +7,12 @@
 		bigbuf = calloc(2048, sizeof(char));	\
 	} while (0)
 
+#define writetwochars do {			\
+		bigbuf[c] = *(format - 1);	\
+		bigbuf[c + 1] = *format;	\
+		c += 2 ;			\
+	} while (0)
+
 #define endprintf do {				\
 		write(1, bigbuf, c);		\
 		va_end(args);			\

@@ -1,10 +1,11 @@
 #include "main.h"
-#include <stdlib.h>
+
 /**
   * _printf - print formatted output
   * @format: string to indicate formats to print
   * Return: Total chars printed, or -1 on fails
   */
+
 int _printf(const char *format, ...)
 {
 	unsigned int c = 0;
@@ -16,7 +17,7 @@ int _printf(const char *format, ...)
 		return (-1);
 	startprintf; /* va_start, allocate 2048 B to write */
 
-	while (*format)
+	for (; *format; format++)
 	{
 		if (*format == '%')
 		{
@@ -30,17 +31,13 @@ int _printf(const char *format, ...)
 				c += s(args, bigbuf);
 			else
 			{
-				bigbuf[c] = *(format - 1);
-				bigbuf[c + 1] = *format;
-				c += 2;
+				writetwochars; /* add prev & curr char, c + 2 */
 			}
-			format++;
 		}
 		else
 		{
 			bigbuf[c] = *format;
 			c++;
-			format++;
 		}
 	}
 	endprintf; /* write buffer, va_end, free buffer */

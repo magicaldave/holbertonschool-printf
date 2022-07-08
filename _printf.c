@@ -46,5 +46,6 @@ int _printf(const char *format, ...)
 	}
 	write(1, bigbuf, c);
 	va_end(args);
+	free (bigbuf);
 	return (c);
 }

@@ -25,29 +25,39 @@ int _printf(const char *format, ...)
 		{
 			if (*(format + 1) == '%')
 			{
-				c += _putchar('%');
+				bigbuf[c] = '%';
+				c++;
 				format += 2;
 			}
 			else
 			{
 				if (!*(format + 1))
+				{
+					write(1, bigbuf, c);
 					return (-1);
+				}
 				s = get_spec(*++format);
 				if (s)
 					c += s(args, bigbuf);
 				else
 				{
-					c += write(1, (format - 1), 2);
+					bigbuf[c] = *(format - 1);
+					bigbuf[c + 1] = *format;
+					c += 2;
 				}
 				format++;
 			}
 		}
 		else
 		{
-			c += _putchar(*format);
+			bigbuf[c] = *format;
+			c++;
 			format++;
 		}
 	}
+
+	write(1, bigbuf, c);
+
 	va_end(args);
 	return (c);
 }

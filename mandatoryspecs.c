@@ -7,8 +7,10 @@
  */
 int print_int(va_list args, char *bigbuf)
 {
-	int minflag = 0, negflag = 0, count = 0, len = 1;
+	int minflag = 0, negflag = 0, count = 0, len = 1, loc = 0;
 	long integer, i = 1;
+
+	loc = _strlen(bigbuf);
 
 	integer = va_arg(args, int);
 
@@ -26,7 +28,9 @@ int print_int(va_list args, char *bigbuf)
 			}
 			else
 				integer *= -1;
-			negflag += _putchar('-');
+			negflag++;
+			bigbuf[loc] = '-';
+			loc++;
 		}
 
 		while ((integer / i) >= 10)
@@ -37,15 +41,12 @@ int print_int(va_list args, char *bigbuf)
 
 		for (; count < len ; count++, i /= 10)
 		{
-			bigbuf[count] = (integer / i) + '0';
+			bigbuf[loc] = (integer / i) + '0';
 			integer %= i;
+			loc++;
 		}
+		bigbuf[loc - 1] += minflag;
 
-		if (minflag)
-			bigbuf[count - 1] += minflag;
-
-
-		write(1, bigbuf, count);
 		return (count + negflag);
 	}
 	return (-2);
@@ -58,7 +59,9 @@ int print_int(va_list args, char *bigbuf)
   */
 int print_unsigned(va_list args, char *bigbuf)
 {
-	unsigned int count = 0, len = 1, integer, i = 1;
+	unsigned int count = 0, len = 1, integer, i = 1, loc = 0;
+
+	loc = _strlen(bigbuf);
 
 	integer = va_arg(args, unsigned int);
 
@@ -70,13 +73,11 @@ int print_unsigned(va_list args, char *bigbuf)
 			len++;
 		}
 
-		for (; count < len ; count++, i /= 10)
+		for (; count < len ; loc++, count++, i /= 10)
 		{
-			bigbuf[count] = (integer / i) + '0';
+			bigbuf[loc] = (integer / i) + '0';
 			integer %= i;
 		}
-
-		write(1, bigbuf, count);
 	}
 
 	return (count);
@@ -90,12 +91,23 @@ int print_unsigned(va_list args, char *bigbuf)
 int printString(va_list args, char *bigbuf)
 {
 	char *s;
+	int loc, len;
+
+	loc = _strlen(bigbuf);
 
 	s = va_arg(args, char *);
+	len = _strlen(s);
 
 	if (!s)
 		s = "(null)";
-	return (write(1, s, _strlen(s)));
+
+	while (*s)
+	{
+		bigbuf[loc] = *s;
+		s++;
+		loc++;
+	}
+	return (len);
 
 
 }
@@ -107,11 +119,15 @@ int printString(va_list args, char *bigbuf)
  */
 int print_char(va_list args, char *bigbuf)
 {
-	int c;
+	int _char, loc = 0;
 
-	c = va_arg(args, int);
+	loc = _strlen(bigbuf);
 
-	return (write(1, &c, 1));
+	_char = va_arg(args, int);
+
+	bigbuf[loc] = _char;
+
+	return (1);
 }
 
 /**

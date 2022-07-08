@@ -7,13 +7,17 @@
   */
 int _printf(const char *format, ...)
 {
-	unsigned int c = 0, char *bigbuf, va_list args;
+	unsigned int c = 0;
+	char *bigbuf;
+	va_list args;
 	int (*s)(va_list, char*);
 
 	if (!format)
 		return (-1);
 	va_start(args, format);
 	bigbuf = malloc(2048 * sizeof(char));
+	if (bigbuff == NULL)
+		return (NULL);
 	while (*format)
 	{
 		if (*format == '%')

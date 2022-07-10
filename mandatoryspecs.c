@@ -57,7 +57,7 @@ int print_unsigned(va_list args, char *bigbuf)
 int print_string(va_list args, char *bigbuf)
 {
 	char *s;
-	int loc, len;
+	int loc, len = 0;
 
 	v_init(s, char *); /* va_arg + strlen(bigbuf) */
 

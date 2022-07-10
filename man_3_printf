@@ -1,23 +1,56 @@
-.TH _PRINTF 1 2022-07-01 GNU
+.TH _PRINTF 3 2022-07-10 GNU
 
 .SH NAME
 _printf \- format and print data
 
 .SH SYNOPSIS
-.B _printf \fIFORMAT\fR [\fIARGUMENT\fR]...
+.B #include \*(lqmain.h\*(rq
+.PP
+.BI "int printf(const char *" "format" ", ...);"
 
 .SH DESCRIPTION
-Print ARGUMENT(s) according to FORMAT
-FORMAT controls the output as in C printf. Interpreted sequences are:
 
+The function printf() produces output according to a format as described below. It writes output to stdout, the standard output stream.
+
+.SS format of the format string
+The format string is a character string. The format string is composed of zero or more directives, ordinary characters (not %), which are coppied unchanged to the putput stream; and conversion specifiers, each of which results in fetching zero or more subsequent arguments. Conversion specifiers are introduced by the character %, and ends with a conversion specifier.
+.PP
+The arguments must correspond properly with the conversion specifier. The arguments are used in the order given, and each conversion specifier asks for the next argument.
+.SS Conversion specifiers
+A character that specifies the type of conversion to be applied.  The conversion specifiers and their meanings are:
+
+.TP
+.B d, i 
+The int argument is converted to signed decimal notation
+.TP
+.B c
+The int argument is converted to an unsigned char, and the resulting character is written.
+.TP
+.B s
+The const char * argument is expected to be a pointer to an array of character type (pointer to a string). Characters from the array are written up to (but not including) a null terminating byte ('\\0').
+.TP
+.B %
+A '%' is written. No argument is converted the complete conversion specification is '%%'.
 
 .SH RETURN VALUE
-Number of characters printed out up success. Return = \-1 if function is unable to complete execution.
+Upon successful return, the number of characters printed is returned (excluding the null byte used to end output of strings).
+.PP
+If an output error is encountered, a negative value is returned.
 
 .SH EXAMPLE
-
+.RI "to print " "Number = 12345" ":"
+.EX
+#include "main.h"
+printf("Number = %d", 12345);
+.EE
+.PP
+.RI "to print " "I have 57 dogs" ":"
+.EX
+#include "main.h"
+printf("I have %d %s", 57, "dogs");
+.EE
 .SH SEE ALSO
-/fBprintf/fR(1), printf(3)
+.BR printf "(1), " printf "(3)"
 
 .SH AUTHOR
 Written by Blake Willis and Dave Corley

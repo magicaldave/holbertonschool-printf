@@ -22,11 +22,17 @@ int print_realstring(va_list args, char *bigbuf)
 		{
 			bigbuf[loc] = '\\';
 			bigbuf[loc + 1] = 'x';
-			bigbuf[loc + 2] = '0';
 
 			invalid = convert(*s, 16);
 
-			for (loc += 3, len += 3; *invalid ; invalid++, loc++, len++)
+			if (_strlen(invalid) < 2)
+			{
+				bigbuf[loc + 2] = '0';
+				loc++;
+				len++;
+			}
+
+			for (loc += 2, len += 2; *invalid ; invalid++, loc++, len++)
 			{
 				bigbuf[loc] = *invalid;
 			}

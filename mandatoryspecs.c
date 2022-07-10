@@ -3,123 +3,83 @@
 /**
  * print_int - prints an input integer argument in base 10
  * @args: variadic list input
+ * @bigbuf: destination string (2048)
  * Return: number of chars printed
  */
 int print_int(va_list args, char *bigbuf)
 {
-	int minflag = 0, negflag = 0, count = 0, len = 1, loc = 0;
-	long integer, i = 1;
+	int len = 0, loc, integer;
+	char *num;
 
-	loc = _strlen(bigbuf);
-	integer = va_arg(args, int);
-	if (integer == 0)
+	v_init(integer, int);
+
+	if (integer < 0)
 	{
-		bigbuf[loc] = '0';
-		return (1);
+		if (integer != INT_MIN)
+			integer = ABS(integer);
+		bigbuf[loc] = '-';
+		loc++;
+		len++;
 	}
-	if (integer)
-	{
-		if (integer < 0)
-		{
-			if (integer == INT_MIN)
-			{
-				integer = INT_MAX;
-				minflag = 1;
-			}
-			else
-				integer *= -1;
-			negflag++;
-			bigbuf[loc] = '-';
-			loc++;
-		}
+	num = convert(integer, 10);
 
-		for (; (integer / i) >= 10 ; i *= 10, len++)
-		{
-		}
+	writestrtobuf(num);
 
-		for (; count < len ; loc++, count++, i /= 10)
-		{
-			bigbuf[loc] = (integer / i) + '0';
-			integer %= i;
-		}
-		bigbuf[loc - 1] += minflag;
-	}
-	return (count + negflag);
+	return (len);
 }
 
 /**
   * print_unsigned - prints an input unsigned int arg in base 10
   * @args: variadic list input
+  * @bigbuf: destination string (2048)
   * Return: number of chars printed
   */
 int print_unsigned(va_list args, char *bigbuf)
 {
-	unsigned int count = 0, len = 1, integer, i = 1, loc = 0;
+	unsigned int len = 0, integer, loc;
+	char *num;
 
-	loc = _strlen(bigbuf);
+	v_init(integer, unsigned int);
 
-	integer = va_arg(args, unsigned int);
+	num = convert(integer, 10);
 
-	if (integer)
-	{
-		while ((integer / i) >= 10)
-		{
-			i *= 10;
-			len++;
-		}
+	writestrtobuf(num);
 
-		for (; count < len ; loc++, count++, i /= 10)
-		{
-			bigbuf[loc] = (integer / i) + '0';
-			integer %= i;
-		}
-	}
-
-	return (count);
+	return (len);
 }
 
 /**
- * printString - prints a string directly to stdout
+ * print_string - prints a string directly to stdout
  * @args: variadic list input
+ * @bigbuf: destination string (2048)
  * Return: number of chars printed
  */
-int printString(va_list args, char *bigbuf)
+int print_string(va_list args, char *bigbuf)
 {
 	char *s;
-	int loc, len;
+	int loc, len = 0;
 
-	loc = _strlen(bigbuf);
-
-	s = va_arg(args, char *);
+	v_init(s, char *); /* va_arg + strlen(bigbuf) */
 
 	if (!s)
 		s = "(null)";
 
-	len = _strlen(s);
+	writestrtobuf(s); /* copy all chars from string into buffer & count */
 
-	while (*s)
-	{
-		bigbuf[loc] = *s;
-		s++;
-		loc++;
-	}
 	return (len);
-
-
 }
 
 /**
  * print_char - take next argument as int, pass it to _putchar
  * @args: va_list argument
+ * @bigbuf: destination string (2048)
  * Return: # of chars printed
  */
 int print_char(va_list args, char *bigbuf)
 {
 	int _char, loc = 0;
 
-	loc = _strlen(bigbuf);
-
-	_char = va_arg(args, int);
+	v_init(_char, int);
 
 	bigbuf[loc] = _char;
 

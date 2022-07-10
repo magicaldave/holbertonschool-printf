@@ -10,12 +10,17 @@
 int (*get_spec(char s))(va_list, char *)
 {
 	spec specs[] = {
-		{"c", print_char},
-		{"s", printString},
-		{"i", print_int},
-		{"d", print_int},
-		{"u", print_unsigned},
 		{"%", print_percent},
+		{"b", print_bin},
+		{"c", print_char},
+		{"d", print_int},
+		{"i", print_int},
+		{"o", print_oct},
+		{"s", print_string},
+		{"S", print_realstring},
+		{"u", print_unsigned},
+		{"x", print_smallhex},
+		{"X", print_bighex},
 		{NULL, NULL}
 	};
 	unsigned int i = 0;

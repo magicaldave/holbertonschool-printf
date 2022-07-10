@@ -7,6 +7,13 @@
 		bigbuf = calloc(2048, sizeof(char));	\
 	} while (0)
 
+#define v_init(var, type) do {				\
+			loc = _strlen(bigbuf);		\
+			var = va_arg(args, type);	\
+		} while (0)
+
+#define writestrtobuf(ptr) for (; *ptr ; bigbuf[loc] = *ptr, ptr++, loc++)
+
 #define writetwochars do {			\
 		bigbuf[c] = *(format - 1);	\
 		bigbuf[c + 1] = *format;	\
@@ -48,10 +55,13 @@ int _strlen(char *s);
 int _printf(const char *format, ...)
 	__attribute__((__format__(printf, 1, 2)));
 /* Subroutines */
-int printString(va_list args, char *bigbuf);
-int print_int(va_list args, char *bigbuf);
-int print_unsigned(va_list args, char *bigbuf);
+int print_bin(va_list args, char *bigbuf);
 int print_char(va_list args, char *bigbuf);
+int print_int(va_list args, char *bigbuf);
 int print_percent(va_list args, char *bigbuf);
+int printString(va_list args, char *bigbuf);
+int print_unsigned(va_list args, char *bigbuf);
+
 int (*get_spec(char s))(va_list, char *);
+char *convert(unsigned int num, int base);
 #endif

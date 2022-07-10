@@ -72,11 +72,6 @@ int print_realstring(va_list args, char *bigbuf);
 int print_string(va_list args, char *bigbuf);
 int print_unsigned(va_list args, char *bigbuf);
 
-<<<<<<< HEAD
-int rec_int(int integer, char *bigbuf);
-int _putchar(char c, char *bigbuf);
-=======
->>>>>>> 665f384cdf5700609e408e311ab8c6be084e328b
 int (*get_spec(char s))(va_list, char *);
 char *convert(unsigned int num, int base);
 #endif

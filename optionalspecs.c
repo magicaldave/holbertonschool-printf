@@ -15,7 +15,7 @@ int print_realstring(va_list args, char *bigbuf)
 	if (!s)
 		s = "(null)";
 
-	for (len = 0; *s > 32 && *s < 127 ; )
+	for (len = 0; *s >= 32 && *s < 127 ; )
 	{
 		bigbuf[loc] = *s;
 		s++;

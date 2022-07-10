@@ -53,7 +53,7 @@ int print_unsigned(va_list args, char *bigbuf)
 }
 
 /**
- * printString - prints a string directly to stdout
+ * print_string - prints a string directly to stdout
  * @args: variadic list input
  * @bigbuf: destination string (2048)
  * Return: number of chars printed

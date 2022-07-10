@@ -15,7 +15,15 @@ int print_realstring(va_list args, char *bigbuf)
 	if (!s)
 		s = "(null)";
 
-	for (len = 0 ; *s && (*s < 32 || *s >= 127); s++, len += 3)
+	for (len = 0; *s > 32 && *s < 127 ; )
+	{
+		bigbuf[loc] = *s;
+		s++;
+		loc++;
+		len++;
+	}
+
+	for (; *s && (*s < 32 || *s >= 127); s++, len += 3)
 	{
 		bigbuf[loc] = '\\';
 		bigbuf[loc + 1] = 'x';
@@ -28,9 +36,6 @@ int print_realstring(va_list args, char *bigbuf)
 			bigbuf[loc] = *invalid;
 		}
 	}
-
-	writestrtobuf(s);
-
 
 	return (len);
 }

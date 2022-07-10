@@ -26,6 +26,8 @@
 		free(bigbuf);			\
 	} while (0)
 
+#define ABS(x) ((x) * (((x) > 0) - ((x) < 0)))
+
 /* Standard Libraries */
 #include <stdio.h>
 #include <stdlib.h>

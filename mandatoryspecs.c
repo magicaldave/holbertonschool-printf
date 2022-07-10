@@ -8,21 +8,22 @@
  */
 int print_int(va_list args, char *bigbuf)
 {
-	int count, loc, integer;
+	int count = 0, loc, integer;
 	char *num;
 
 	v_init(integer, int);
 
-	num = convert(integer, 10);
-
-	count = _strlen(num);
-
 	if (integer < 0)
 	{
+		if (integer != INT_MIN)
+			integer = ABS(integer);
 		bigbuf[loc] = '-';
 		loc++;
 		count++;
 	}
+	num = convert(integer, 10);
+
+	count += _strlen(num);
 
 	writestrtobuf(num);
 

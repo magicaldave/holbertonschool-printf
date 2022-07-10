@@ -1,8 +1,39 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+/* MACROS */
+#define startprintf do {				\
+		va_start(args, format);			\
+		bigbuf = calloc(2048, sizeof(char));	\
+	} while (0)
+
+#define v_init(var, type) do {				\
+			loc = _strlen(bigbuf);		\
+			var = va_arg(args, type);	\
+		} while (0)
+
+#define writestrtobuf(ptr) for (; *ptr ; bigbuf[loc] = *ptr, \
+					ptr++,			    \
+					loc++,			    \
+					len++)
+
+#define writetwochars do {			\
+		bigbuf[c] = *(format - 1);	\
+		bigbuf[c + 1] = *format;	\
+		c += 2 ;			\
+	} while (0)
+
+#define endprintf do {				\
+		write(1, bigbuf, c);		\
+		va_end(args);			\
+		free(bigbuf);			\
+	} while (0)
+
+#define ABS(x) ((x) * (((x) > 0) - ((x) < 0)))
+
 /* Standard Libraries */
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdarg.h>
 #include <unistd.h>
 #include <limits.h>
@@ -30,13 +61,22 @@ int _strlen(char *s);
 int _printf(const char *format, ...)
 	__attribute__((__format__(printf, 1, 2)));
 /* Subroutines */
-int printString(va_list args, char *bigbuf);
-int print_int(va_list args, char *bigbuf);
-int print_unsigned(va_list args, char *bigbuf);
+int print_bighex(va_list args, char *bigbuf);
+int print_bin(va_list args, char *bigbuf);
 int print_char(va_list args, char *bigbuf);
+int print_int(va_list args, char *bigbuf);
+int print_oct(va_list args, char *bigbuf);
 int print_percent(va_list args, char *bigbuf);
+int print_smallhex(va_list args, char *bigbuf);
+int print_realstring(va_list args, char *bigbuf);
+int print_string(va_list args, char *bigbuf);
+int print_unsigned(va_list args, char *bigbuf);
 
+<<<<<<< HEAD
 int rec_int(int integer, char *bigbuf);
 int _putchar(char c, char *bigbuf);
+=======
+>>>>>>> 665f384cdf5700609e408e311ab8c6be084e328b
 int (*get_spec(char s))(va_list, char *);
+char *convert(unsigned int num, int base);
 #endif

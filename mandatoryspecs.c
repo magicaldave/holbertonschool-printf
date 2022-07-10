@@ -8,7 +8,7 @@
  */
 int print_int(va_list args, char *bigbuf)
 {
-	int count = 0, loc, integer;
+	int len = 0, loc, integer;
 	char *num;
 
 	v_init(integer, int);
@@ -19,15 +19,13 @@ int print_int(va_list args, char *bigbuf)
 			integer = ABS(integer);
 		bigbuf[loc] = '-';
 		loc++;
-		count++;
+		len++;
 	}
 	num = convert(integer, 10);
 
-	count += _strlen(num);
-
 	writestrtobuf(num);
 
-	return (count);
+	return (len);
 }
 
 /**
@@ -38,18 +36,16 @@ int print_int(va_list args, char *bigbuf)
   */
 int print_unsigned(va_list args, char *bigbuf)
 {
-	unsigned int count = 0, integer, loc;
+	unsigned int len = 0, integer, loc;
 	char *num;
 
 	v_init(integer, unsigned int);
 
 	num = convert(integer, 10);
 
-	count = _strlen(num);
-
 	writestrtobuf(num);
 
-	return (count);
+	return (len);
 }
 
 /**
@@ -68,9 +64,7 @@ int print_string(va_list args, char *bigbuf)
 	if (!s)
 		s = "(null)";
 
-	len = _strlen(s);
-
-	writestrtobuf(s); /* copy all chars from string into buffer */
+	writestrtobuf(s); /* copy all chars from string into buffer & count */
 
 	return (len);
 }

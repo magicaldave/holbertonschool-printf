@@ -12,7 +12,10 @@
 			var = va_arg(args, type);	\
 		} while (0)
 
-#define writestrtobuf(ptr) for (; *ptr ; bigbuf[loc] = *ptr, ptr++, loc++)
+#define writestrtobuf(ptr) for (; *ptr ; bigbuf[loc] = *ptr, \
+					ptr++,			    \
+					loc++,			    \
+					len++)
 
 #define writetwochars do {			\
 		bigbuf[c] = *(format - 1);	\
@@ -64,6 +67,7 @@ int print_int(va_list args, char *bigbuf);
 int print_oct(va_list args, char *bigbuf);
 int print_percent(va_list args, char *bigbuf);
 int print_smallhex(va_list args, char *bigbuf);
+int print_realstring(va_list args, char *bigbuf);
 int print_string(va_list args, char *bigbuf);
 int print_unsigned(va_list args, char *bigbuf);
 

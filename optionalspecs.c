@@ -18,7 +18,7 @@ int print_realstring(va_list args, char *bigbuf)
 
 	for (len = 0; *s ; s++)
 	{
-		if (*s < 7 || (*s < 32 && *s > 13) || *s > 126)
+		if (*s < 32 || *s > 126)
 		{
 			bigbuf[loc] = '\\';
 			bigbuf[loc + 1] = 'x';

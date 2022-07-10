@@ -58,7 +58,7 @@ int print_unsigned(va_list args, char *bigbuf)
  * @bigbuf: destination string (2048)
  * Return: number of chars printed
  */
-int printString(va_list args, char *bigbuf)
+int print_string(va_list args, char *bigbuf)
 {
 	char *s;
 	int loc, len;

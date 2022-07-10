@@ -42,3 +42,69 @@ int print_bin(va_list args, char *bigbuf)
 
 	return (len);
 }
+/**
+ * print_oct - prints input in base 8
+ * @args: variadic list input
+ * @bigbuf: destination string (2048)
+ * Return: # of chars written
+ */
+int print_oct(va_list args, char *bigbuf)
+{
+	char *num;
+	int loc, len;
+
+	num = convert(va_arg(args, int), 8);
+
+	loc = _strlen(bigbuf);
+	len = _strlen(num);
+
+	writestrtobuf(num);
+
+	return (len);
+}
+/**
+ * print_smallhex - prints input in base 16, with lowercase chars
+ * @args: variadic list input
+ * @bigbuf: destination string (2048)
+ * Return: # of chars written
+ */
+int print_smallhex(va_list args, char *bigbuf)
+{
+	char *num;
+	int loc, len;
+
+	num = convert(va_arg(args, int), 16);
+
+	for (len = 0 ; num[len] ; len++)
+	{
+		if (num[len] >= 65)
+			num[len] += 32; /* convert caps to lowercase */
+	}
+
+	loc = _strlen(bigbuf);
+	len = _strlen(num);
+
+	writestrtobuf(num);
+
+	return (len);
+}
+/**
+ * print_bighex - prints input in base 16, with uppercase letters
+ * @args: variadic list input
+ * @bigbuf: destination string (2048)
+ * Return: # of chars written
+ */
+int print_bighex(va_list args, char *bigbuf)
+{
+	char *num;
+	int loc, len;
+
+	num = convert(va_arg(args, int), 16);
+
+	loc = _strlen(bigbuf);
+	len = _strlen(num);
+
+	writestrtobuf(num);
+
+	return (len);
+}

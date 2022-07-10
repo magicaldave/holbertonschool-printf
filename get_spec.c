@@ -15,8 +15,11 @@ int (*get_spec(char s))(va_list, char *)
 		{"c", print_char},
 		{"d", print_int},
 		{"i", print_int},
-		{"s", printString},
+		{"o", print_oct},
+		{"s", print_string},
 		{"u", print_unsigned},
+		{"x", print_smallhex},
+		{"X", print_bighex},
 		{NULL, NULL}
 	};
 	unsigned int i = 0;

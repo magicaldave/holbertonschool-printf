@@ -57,11 +57,14 @@ int _strlen(char *s);
 int _printf(const char *format, ...)
 	__attribute__((__format__(printf, 1, 2)));
 /* Subroutines */
+int print_bighex(va_list args, char *bigbuf);
 int print_bin(va_list args, char *bigbuf);
 int print_char(va_list args, char *bigbuf);
 int print_int(va_list args, char *bigbuf);
+int print_oct(va_list args, char *bigbuf);
 int print_percent(va_list args, char *bigbuf);
-int printString(va_list args, char *bigbuf);
+int print_smallhex(va_list args, char *bigbuf);
+int print_string(va_list args, char *bigbuf);
 int print_unsigned(va_list args, char *bigbuf);
 
 int (*get_spec(char s))(va_list, char *);

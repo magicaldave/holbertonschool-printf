@@ -39,6 +39,7 @@ int _printf(const char *format, ...)
 			c++;
 		}
 	}
+
 	endprintf; /* write buffer to stdout , va_end, free buffer */
 	return (c);
 }

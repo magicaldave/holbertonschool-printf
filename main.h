@@ -37,6 +37,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <limits.h>
+#include <stdlib.h>
 /* STRUCT */
 /**
  * struct specifier - checks for valid format specifier from printf

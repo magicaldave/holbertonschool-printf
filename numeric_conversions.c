@@ -31,12 +31,11 @@ char *convert(unsigned int num, int base)
 int print_bin(va_list args, char *bigbuf)
 {
 	char *num;
-	int loc, len;
+	int loc, len = 0;
 
 	num = convert(va_arg(args, int), 2);
 
 	loc = _strlen(bigbuf);
-	len = _strlen(num);
 
 	writestrtobuf(num);
 
@@ -51,12 +50,11 @@ int print_bin(va_list args, char *bigbuf)
 int print_oct(va_list args, char *bigbuf)
 {
 	char *num;
-	int loc, len;
+	int loc, len = 0;
 
 	num = convert(va_arg(args, int), 8);
 
 	loc = _strlen(bigbuf);
-	len = _strlen(num);
 
 	writestrtobuf(num);
 
@@ -71,18 +69,17 @@ int print_oct(va_list args, char *bigbuf)
 int print_smallhex(va_list args, char *bigbuf)
 {
 	char *num;
-	int loc, len;
+	int i, loc, len = 0;
 
 	num = convert(va_arg(args, int), 16);
 
-	for (len = 0 ; num[len] ; len++)
+	for (i = 0; num[i]; i++)
 	{
-		if (num[len] >= 65)
-			num[len] += 32; /* convert caps to lowercase */
+		if (num[i] >= 65)
+			num[i] += 32; /* convert caps to lowercase */
 	}
 
 	loc = _strlen(bigbuf);
-	len = _strlen(num);
 
 	writestrtobuf(num);
 
@@ -97,12 +94,11 @@ int print_smallhex(va_list args, char *bigbuf)
 int print_bighex(va_list args, char *bigbuf)
 {
 	char *num;
-	int loc, len;
+	int loc, len = 0;
 
 	num = convert(va_arg(args, int), 16);
 
 	loc = _strlen(bigbuf);
-	len = _strlen(num);
 
 	writestrtobuf(num);
 

@@ -23,7 +23,6 @@ typedef struct specifier
 	int (*f)(va_list, char *);
 } spec;
 /* Old Function Prototypes*/
-void rev_string(char *src);
 int _strlen(char *s);
 /* New Function Prototypes */
 /**
@@ -42,6 +41,7 @@ int print_oct(va_list args, char *bigbuf);
 int print_percent(va_list args, char *bigbuf);
 int print_smallhex(va_list args, char *bigbuf);
 int print_realstring(va_list args, char *bigbuf);
+int print_revstring(va_list args, char *bigbuf);
 int print_string(va_list args, char *bigbuf);
 int print_unsigned(va_list args, char *bigbuf);
 

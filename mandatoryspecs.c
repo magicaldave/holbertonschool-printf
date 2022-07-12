@@ -11,7 +11,7 @@ int print_int(va_list args, char *bigbuf)
 	int len = 0, loc, integer;
 	char *num;
 
-	v_init(integer, int);
+	v_init(integer, int); /* va_arg & loc = _strlen(bigbuf) */
 
 	if (integer < 0)
 	{
@@ -39,7 +39,7 @@ int print_unsigned(va_list args, char *bigbuf)
 	unsigned int len = 0, integer, loc;
 	char *num;
 
-	v_init(integer, unsigned int);
+	v_init(integer, unsigned int); /* va_arg & loc = _strlen(bigbuf) */
 
 	num = convert(integer, 10);
 
@@ -59,7 +59,7 @@ int print_string(va_list args, char *bigbuf)
 	char *s;
 	int loc, len = 0;
 
-	v_init(s, char *); /* va_arg + strlen(bigbuf) */
+	v_init(s, char *); /* va_arg & loc = _strlen(bigbuf) */
 
 	if (!s)
 		s = "(null)";
@@ -79,7 +79,7 @@ int print_char(va_list args, char *bigbuf)
 {
 	int _char, loc = 0;
 
-	v_init(_char, int);
+	v_init(_char, int); /* va_arg & loc = _strlen(bigbuf) */
 
 	bigbuf[loc] = _char;
 

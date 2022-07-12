@@ -6,6 +6,7 @@ int main(void)
 	unsigned int ui;
 	void *addr;
 
+
 	_printf("%r\n%s", "SELFFAW", "WAFFLES");
 	_printf("Negative:[%d]\n", -762534);
 	_printf("%c", 'S');
@@ -115,6 +116,7 @@ int main(void)
 	_printf("%R", "Guvf fragrapr vf ergevrirq sebz in_netf!\n");
 	_printf("Complete the sentence: You %R nothing, Jon Snow.\n", "xabj");
 	_printf("Complete the sentence: You %R nothing, Jon Snow.\n", "");
+
 
 	return (c);
 }

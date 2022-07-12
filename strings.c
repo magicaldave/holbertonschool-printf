@@ -49,17 +49,17 @@ int print_rot13string(va_list args, char *bigbuf)
 
 	for (; s[c] ; c++, loc++, len++)
 	{
-		if (!((s[c] >= 97 && s[c] <= 122) || (s[c] >= 65 && s[c] <= 90)))
+		if ((s[c] >= 110 && s[c] <= 122) || (s[c] >= 78 && s[c] <= 90))
 		{
-			bigbuf[loc] = s[c];
+			bigbuf[loc] = s[c] - 13;
 			continue;
 		}
-		if (!((s[c] > 109) || (s[c] > 77 && s[c] < 91)))
+		if ((s[c] < 110 && s[c] > 96) || (s[c] < 77 && s[c] > 64))
 		{
-			bigbuf[loc] = (s[c] + 13);
+			bigbuf[loc] = s[c] + 13;
 			continue;
 		}
-			bigbuf[loc] = (s[c] - 13);
+			bigbuf[loc] = (s[c]);
 	}
 
 	return (len);

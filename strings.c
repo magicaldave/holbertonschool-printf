@@ -36,3 +36,31 @@ int print_revstring(va_list args, char *bigbuf)
 
 	return (count);
 }
+
+int print_rot13string(va_list args, char *bigbuf)
+{
+	char *s;
+	int len = 0, c = 0, loc;
+
+	v_init(s, char *); /* va_arg & loc = _strlen(bigbuf) */
+
+	if (!s)
+		s = "(null)";
+
+	for (; s[c] ; c++, loc++, len++)
+	{
+		if (!((s[c] >= 97 && s[c] <= 122) || (s[c] >= 65 && s[c] <= 90)))
+		{
+			bigbuf[loc] = s[c];
+			continue;
+		}
+		if (!((s[c] > 109) || (s[c] > 77 && s[c] < 91)))
+		{
+			bigbuf[loc] = (s[c] + 13);
+			continue;
+		}
+			bigbuf[loc] = (s[c] - 13);
+	}
+
+	return (len);
+}

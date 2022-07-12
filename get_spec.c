@@ -17,6 +17,7 @@ int (*get_spec(char s))(va_list, char *)
 		{"i", print_int},
 		{"o", print_oct},
 		{"r", print_revstring},
+		{"R", print_rot13string},
 		{"s", print_string},
 		{"S", print_realstring},
 		{"u", print_unsigned},

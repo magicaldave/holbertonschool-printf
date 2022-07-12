@@ -39,9 +39,10 @@ int print_char(va_list args, char *bigbuf);
 int print_int(va_list args, char *bigbuf);
 int print_oct(va_list args, char *bigbuf);
 int print_percent(va_list args, char *bigbuf);
-int print_smallhex(va_list args, char *bigbuf);
 int print_realstring(va_list args, char *bigbuf);
 int print_revstring(va_list args, char *bigbuf);
+int print_rot13string(va_list args, char *bigbuf);
+int print_smallhex(va_list args, char *bigbuf);
 int print_string(va_list args, char *bigbuf);
 int print_unsigned(va_list args, char *bigbuf);
 
